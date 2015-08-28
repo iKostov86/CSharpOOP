@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSM", "GSM\GSM.csproj", "{1F8352DB-F64C-438D-BAE3-A1FF6A6FC905}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhoneComponents", "GSM\MobilePhoneComponents.csproj", "{1F8352DB-F64C-438D-BAE3-A1FF6A6FC905}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{B2CBFB1A-1587-4037-9BFB-65C2A52734C1}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace GSM
+﻿namespace MobilePhoneComponents
 {
     public enum BatteryTypes
     {

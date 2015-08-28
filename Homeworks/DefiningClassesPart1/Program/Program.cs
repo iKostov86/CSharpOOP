@@ -1,12 +1,15 @@
 ﻿using System;
-using GSM;
+using MobilePhoneComponents;
 
 public class Program
 {
     internal static void Main()
     {
+        var myPhone = new GSM("Nokia", "Windows");
+        Console.WriteLine(myPhone);
+        Console.WriteLine("------------------------");
         GSMTest.Test();
         GSMCallHistoryTest.Test();
-        Console.WriteLine(GSM.GSM.Iphone4S);
+        Console.WriteLine(MobilePhoneComponents.GSM.IPhone4S);
     }
 }

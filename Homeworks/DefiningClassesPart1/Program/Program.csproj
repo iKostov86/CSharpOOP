@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GSM\GSM.csproj">
+    <ProjectReference Include="..\GSM\MobilePhoneComponents.csproj">
       <Project>{1f8352db-f64c-438d-bae3-a1ff6a6fc905}</Project>
-      <Name>GSM</Name>
+      <Name>MobilePhoneComponents</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

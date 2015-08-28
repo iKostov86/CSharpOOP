@@ -1,4 +1,4 @@
-﻿namespace GSM
+﻿namespace MobilePhoneComponents
 {
     using System;
     using System.Collections.Generic;
@@ -10,12 +10,12 @@
         #region Fields
         private const decimal PricePerMinute = 0.37m;
         private static readonly GSM iPhone4S;
-        private string gsmModel;
+        private string model;
         private string manufacturer;
         private decimal? price;
         private string owner;
-        private Battery gsmBattery;
-        private Display gsmDisplay;
+        private Battery battery;
+        private Display display;
         private List<Call> callHistory;
         #endregion
 
@@ -25,30 +25,15 @@
             iPhone4S = new GSM("iPhone 4S", "Apple", 1000.0m, "Not me", new Battery(), new Display());
         }
 
-        public GSM()
+        public GSM(string model, string manufacturer, decimal? price = null, string owner = null, Battery battery = null, Display display = null)
         {
-            this.CallHistory = new List<Call>();
-        }
-
-        public GSM(string gsmModel, string manufacturer)
-            : this()
-        {
-            this.GsmModel = gsmModel;
+            this.Model = model;
             this.Manufacturer = manufacturer;
-        }
-
-        public GSM(string gsmModel, string manufacturer, decimal? price, string owner)
-            : this(gsmModel, manufacturer)
-        {
             this.Price = price;
             this.Owner = owner;
-        }
-
-        public GSM(string gsmModel, string manufacturer, decimal? price, string owner, Battery gsmBattery, Display gsmDisplay)
-            : this(gsmModel, manufacturer, price, owner)
-        {
-            this.GsmBattery = gsmBattery;
-            this.GsmDisplay = gsmDisplay;
+            this.Battery = battery;
+            this.Display = display;
+            this.CallHistory = new List<Call>();
         }
         #endregion
 
@@ -58,11 +43,11 @@
             get { return iPhone4S; }
         }
 
-        public string GsmModel
+        public string Model
         {
             get
             {
-                return this.gsmModel;
+                return this.model;
             }
 
             private set
@@ -73,7 +58,7 @@
                 }
                 else
                 {
-                    this.gsmModel = value;
+                    this.model = value;
                 }
             }
         }
@@ -107,9 +92,9 @@
 
             private set
             {
-                if (value < 0 || value == null)
+                if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("The price can't be negative or empthy!");
+                    throw new ArgumentOutOfRangeException("The price can't be negative!");
                 }
                 else
                 {
@@ -124,61 +109,48 @@
             {
                 return this.owner;
             }
-
             private set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("The owner field can't be empthy!");
-                }
-                else
-                {
-                    this.owner = value;
-                }
+                this.owner = value;
             }
         }
 
-        public Battery GsmBattery
+        public Battery Battery
         {
             get
             {
-                return this.gsmBattery;
+                return this.battery;
             }
 
             private set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("The battery info can't be empthy!");
-                }
-
-                this.gsmBattery = value;
+                this.battery = value;
             }
         }
 
-        public Display GsmDisplay
+        public Display Display
         {
             get
             {
-                return this.gsmDisplay;
+                return this.display;
             }
 
             private set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("The display info can't be empthy!");
-                }
-
-                this.gsmDisplay = value;
+                this.display = value;
             }
         }
 
         public List<Call> CallHistory
         {
-            ////get { return this.callHistory; }
-            get { return new List<Call>(this.callHistory); }
-            private set { this.callHistory = value; }
+            get
+            {
+                return new List<Call>(this.callHistory);
+            }
+            private set
+            {
+                this.callHistory = value;
+            }
         }
         #endregion
 
@@ -216,18 +188,26 @@
 
         public GSM DeepCopy()
         {
-            return new GSM(this.GsmModel, this.manufacturer, this.Price, this.Owner, this.GsmBattery, this.GsmDisplay);
+            return new GSM(this.Model, this.manufacturer, this.Price, this.Owner, this.Battery, this.Display);
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Model:".PadLeft(15) + string.Format("{0, 15}", this.GsmModel));
+            string valuteSymbol = String.Empty;
+
+            if (this.Price != null)
+            {
+                valuteSymbol = "$";
+            }
+
+            sb.AppendLine("/GSM specifications/".PadLeft(30));
+            sb.AppendLine("Model:".PadLeft(15) + string.Format("{0, 15}", this.Model));
             sb.AppendLine("Manufacturer:".PadLeft(15) + string.Format("{0, 15}", this.Manufacturer));
-            sb.AppendLine("Price:".PadLeft(15) + string.Format("{0, 14}$", this.Price));
-            sb.AppendLine("Owner:".PadLeft(15) + string.Format("{0, 15}", this.Owner));
-            sb.AppendLine("GsmBattery:".PadLeft(15) + Environment.NewLine + string.Format("{0, 15}", this.GsmBattery));
-            sb.AppendLine("GsmDisplay:".PadLeft(15) + Environment.NewLine + string.Format("{0, 15}", this.GsmDisplay));
+            if (this.Price != null) sb.AppendLine("Price:".PadLeft(15) + string.Format("{0, 14}{1}", this.Price, valuteSymbol));
+            if (this.Owner != null) sb.AppendLine("Owner:".PadLeft(15) + string.Format("{0, 15}", this.Owner) + Environment.NewLine);
+            if (this.Battery != null) sb.AppendLine("/Battery/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Battery));
+            if (this.Display != null) sb.AppendLine("/Display/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Display));
 
             return sb.ToString();
         }

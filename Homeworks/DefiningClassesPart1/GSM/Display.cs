@@ -1,4 +1,4 @@
-﻿namespace GSM
+﻿namespace MobilePhoneComponents
 {
     using System;
     using System.Text;

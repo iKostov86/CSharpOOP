@@ -7,7 +7,7 @@
     <ProjectGuid>{1F8352DB-F64C-438D-BAE3-A1FF6A6FC905}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GSM</RootNamespace>
+    <RootNamespace>MobilePhoneComponents</RootNamespace>
     <AssemblyName>GSM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
