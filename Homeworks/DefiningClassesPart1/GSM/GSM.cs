@@ -194,17 +194,18 @@
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            string valuteSymbol = String.Empty;
+            string currencySign = String.Empty;
 
             if (this.Price != null)
             {
-                valuteSymbol = "$";
+                currencySign = "$";
             }
 
             sb.AppendLine("/GSM specifications/".PadLeft(30));
             sb.AppendLine("Model:".PadLeft(15) + string.Format("{0, 15}", this.Model));
             sb.AppendLine("Manufacturer:".PadLeft(15) + string.Format("{0, 15}", this.Manufacturer));
-            if (this.Price != null) sb.AppendLine("Price:".PadLeft(15) + string.Format("{0, 14}{1}", this.Price, valuteSymbol));
+
+            if (this.Price != null) sb.AppendLine("Price:".PadLeft(15) + string.Format("{0, 14}{1}", this.Price, currencySign));
             if (this.Owner != null) sb.AppendLine("Owner:".PadLeft(15) + string.Format("{0, 15}", this.Owner) + Environment.NewLine);
             if (this.Battery != null) sb.AppendLine("/Battery/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Battery));
             if (this.Display != null) sb.AppendLine("/Display/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Display));
