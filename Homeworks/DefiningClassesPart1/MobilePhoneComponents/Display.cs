@@ -11,15 +11,15 @@
         {
         }
 
-        public Display(decimal? displaySize, int? numberOfColors)
+        public Display(decimal? size, int? numberOfColors)
         {
-            this.DisplaySize = displaySize;
+            this.Size = size;
             this.NumberOfColors = numberOfColors;
         }
         #endregion
 
         #region Properties
-        public decimal? DisplaySize { get; set; }
+        public decimal? Size { get; set; }
 
         public int? NumberOfColors { get; set; }
         #endregion
@@ -28,8 +28,10 @@
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("DisplaySize:".PadLeft(15) + string.Format("{0, 15}", this.DisplaySize));
+
+            sb.AppendLine("DisplaySize:".PadLeft(15) + string.Format("{0, 15}", this.Size));
             sb.AppendLine("NumberOfColors:".PadLeft(15) + string.Format("{0, 15}", this.NumberOfColors));
+
             return sb.ToString();
         }
         #endregion
