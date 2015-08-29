@@ -48,7 +48,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GSM\MobilePhoneComponents.csproj">
+    <ProjectReference Include="..\MobilePhoneComponents\MobilePhoneComponents.csproj">
       <Project>{1f8352db-f64c-438d-bae3-a1ff6a6fc905}</Project>
       <Name>MobilePhoneComponents</Name>
     </ProjectReference>
