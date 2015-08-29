@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
@@ -197,12 +198,9 @@
 
         public decimal CalculateTotalCost()
         {
-            uint totalDuration = 0;
-
-            foreach (Call call in this.callHistory)
-            {
-                totalDuration += (uint)call.Duration;
-            }
+            uint totalDuration = this
+                .callHistory
+                .Aggregate(0u, (x, y) => x + (uint)y.Duration);
 
             return PricePerMinute * (totalDuration / 60m);
         }
