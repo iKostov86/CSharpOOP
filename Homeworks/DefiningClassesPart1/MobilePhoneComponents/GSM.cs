@@ -40,7 +40,10 @@
         #region Properties
         public static GSM IPhone4S
         {
-            get { return iPhone4S; }
+            get
+            {
+                return iPhone4S;
+            }
         }
 
         public string Model
@@ -87,6 +90,11 @@
         {
             get
             {
+                if (this.price == null)
+                {
+                    throw new NullReferenceException("The price can't be found!");
+                }
+
                 return this.price;
             }
 
@@ -107,8 +115,14 @@
         {
             get
             {
+                if (this.owner == null)
+                {
+                    throw new NullReferenceException("The owner can't be found!");
+                }
+
                 return this.owner;
             }
+
             private set
             {
                 this.owner = value;
@@ -119,6 +133,11 @@
         {
             get
             {
+                if (this.battery == null)
+                {
+                    throw new NullReferenceException("The battery can't be found!");
+                }
+
                 return this.battery;
             }
 
@@ -132,6 +151,11 @@
         {
             get
             {
+                if (this.display == null)
+                {
+                    throw new NullReferenceException("The display can't be found!");
+                }
+
                 return this.display;
             }
 
@@ -147,6 +171,7 @@
             {
                 return new List<Call>(this.callHistory);
             }
+
             private set
             {
                 this.callHistory = value;
@@ -194,7 +219,7 @@
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            string currencySign = String.Empty;
+            string currencySign = string.Empty;
 
             if (this.Price != null)
             {
@@ -205,10 +230,25 @@
             sb.AppendLine("Model:".PadLeft(15) + string.Format("{0, 15}", this.Model));
             sb.AppendLine("Manufacturer:".PadLeft(15) + string.Format("{0, 15}", this.Manufacturer));
 
-            if (this.Price != null) sb.AppendLine("Price:".PadLeft(15) + string.Format("{0, 14}{1}", this.Price, currencySign));
-            if (this.Owner != null) sb.AppendLine("Owner:".PadLeft(15) + string.Format("{0, 15}", this.Owner) + Environment.NewLine);
-            if (this.Battery != null) sb.AppendLine("/Battery/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Battery));
-            if (this.Display != null) sb.AppendLine("/Display/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Display));
+            if (this.Price != null)
+            {
+                sb.AppendLine("Price:".PadLeft(15) + string.Format("{0, 14}{1}", this.Price, currencySign));
+            }
+
+            if (this.Owner != null)
+            {
+                sb.AppendLine("Owner:".PadLeft(15) + string.Format("{0, 15}", this.Owner) + Environment.NewLine);
+            }
+
+            if (this.Battery != null)
+            {
+                sb.AppendLine("/Battery/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Battery));
+            }
+
+            if (this.Display != null)
+            {
+                sb.AppendLine("/Display/".PadLeft(30) + Environment.NewLine + string.Format("{0, 15}", this.Display));
+            }
 
             return sb.ToString();
         }
