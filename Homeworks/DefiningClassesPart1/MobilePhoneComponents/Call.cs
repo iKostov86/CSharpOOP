@@ -8,8 +8,6 @@
     {
         #region Fields
         private DateTime dateTime;
-        private string dialedNumber;
-        private uint? duration;
         #endregion
 
         #region Constructors
@@ -24,31 +22,30 @@
         #region Properties
         public string Date
         {
-            get { return this.dateTime.ToShortDateString(); }
+            get
+            {
+                return this.dateTime.ToShortDateString();
+            }
         }
 
         public string Time
         {
-            get { return this.dateTime.ToShortTimeString(); }
+            get
+            {
+                return this.dateTime.ToShortTimeString();
+            }
         }
 
-        public string DialedNumber
-        {
-            get { return this.dialedNumber; }
-            set { this.dialedNumber = value; }
-        }
+        public string DialedNumber { get; set; }
 
-        public uint? Duration
-        {
-            get { return this.duration; }
-            set { this.duration = value; }
-        }
+        public uint? Duration { get; set; }
         #endregion
 
         #region Methods
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.AppendLine(string.Format("Dialed phone number: {0}", this.DialedNumber));
             sb.AppendLine(string.Format("Duration: {0}s", this.Duration));
             sb.AppendLine(string.Format("Date: {0}", this.Date));

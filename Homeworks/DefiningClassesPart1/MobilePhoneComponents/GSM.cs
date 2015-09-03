@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
@@ -197,13 +198,11 @@
 
         public decimal CalculateTotalCost()
         {
-            ulong totalDuration = 0;
-            foreach (Call call in this.callHistory)
-            {
-                totalDuration += (ulong)call.Duration;
-            }
+            uint totalDuration = this
+                .callHistory
+                .Aggregate(0u, (x, y) => x + (uint)y.Duration);
 
-            return PricePerMinute * ((decimal)totalDuration / 60);
+            return PricePerMinute * (totalDuration / 60m);
         }
 
         public GSM ShallowCopy()
@@ -213,7 +212,9 @@
 
         public GSM DeepCopy()
         {
-            return new GSM(this.Model, this.manufacturer, this.Price, this.Owner, this.Battery, this.Display);
+            return new GSM(this.Model, this.manufacturer, this.Price, this.Owner,
+                new Battery(this.Battery.Model, this.Battery.HoursIdle, this.Battery.HoursTalk, this.Battery.Type),
+                new Display(this.Display.Size, this.Display.NumberOfColors));
         }
 
         public override string ToString()

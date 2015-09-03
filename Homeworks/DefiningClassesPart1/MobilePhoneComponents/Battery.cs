@@ -11,33 +11,34 @@
         {
         }
 
-        public Battery(string batteryModel, int? hoursIdle = null, int? hoursTalk = null, BatteryTypes batteryType = BatteryTypes.NiMH)
+        public Battery(string model, int? hoursIdle = null, int? hoursTalk = null, BatteryTypes type = BatteryTypes.NiMH)
         {
-            this.BatteryModel = batteryModel;
+            this.Model = model;
             this.HoursIdle = hoursIdle;
             this.HoursTalk = hoursTalk;
-            this.BatteryType = batteryType;
+            this.Type = type;
         }
         #endregion
 
         #region Properties
-        public string BatteryModel { get; set; }
+        public string Model { get; set; }
 
         public int? HoursIdle { get; set; }
 
         public int? HoursTalk { get; set; }
 
-        public BatteryTypes BatteryType { get; set; }
+        public BatteryTypes Type { get; set; }
         #endregion
 
         #region Methods
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("BatteryModel:".PadLeft(15) + string.Format("{0, 15}", this.BatteryModel));
+
+            sb.AppendLine("Model:".PadLeft(15) + string.Format("{0, 15}", this.Model));
             sb.AppendLine("HoursIdle:".PadLeft(15) + string.Format("{0, 15}", this.HoursIdle));
             sb.AppendLine("HoursTalk:".PadLeft(15) + string.Format("{0, 15}", this.HoursTalk));
-            sb.AppendLine("BatteryType:".PadLeft(15) + string.Format("{0, 15}", this.BatteryType));
+            sb.AppendLine("Type:".PadLeft(15) + string.Format("{0, 15}", this.Type));
 
             return sb.ToString();
         }
