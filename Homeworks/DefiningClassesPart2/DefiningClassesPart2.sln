@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Point3DSpace", "Point3DSpace", "{52C81A14-2E78-4F9F-A125-EB19533BB557}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Space3D", "Space3D", "{52C81A14-2E78-4F9F-A125-EB19533BB557}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Point3D", "Point3D\Point3D.csproj", "{F0B03F6D-D3EE-413C-AD2E-873230A4E8D2}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericList", "GenericList\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProgramTest", "ProgramTest", "{09DE5784-7724-4012-95F5-2F18C4F691AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Point3DSpaceTest", "Point3DTest\Point3DSpaceTest.csproj", "{DF349FBD-B946-46AC-8ABB-1D7EA0997EDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space3DTest", "Point3DTest\Space3DTest.csproj", "{DF349FBD-B946-46AC-8ABB-1D7EA0997EDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericClassTest", "GenericClassTest\GenericClassTest.csproj", "{4FD03D0C-3359-445C-9AAA-327AB1A147E1}"
 EndProject

@@ -7,8 +7,8 @@
     <ProjectGuid>{DF349FBD-B946-46AC-8ABB-1D7EA0997EDB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Point3DTest</RootNamespace>
-    <AssemblyName>Point3DTest</AssemblyName>
+    <RootNamespace>ProgramsTest</RootNamespace>
+    <AssemblyName>Space3DTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Point3DSpaceTest.cs" />
+    <Compile Include="Space3DTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

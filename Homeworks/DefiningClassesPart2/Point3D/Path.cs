@@ -1,4 +1,4 @@
-﻿namespace Point3DSpace
+﻿namespace Space3D
 {
     using System;
     using System.Collections.Generic;
@@ -25,8 +25,14 @@
         #region Properties
         public ICollection<Point3D> Points
         {
-            get { return this.points; }
-            private set { this.points = value; }
+            get
+            {
+                return this.points;
+            }
+            private set
+            {
+                this.points = value;
+            }
         }
         #endregion
 

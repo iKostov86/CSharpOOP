@@ -1,4 +1,4 @@
-﻿namespace Point3DSpace
+﻿namespace Space3D
 {
     using System;
 

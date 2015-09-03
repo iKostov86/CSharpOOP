@@ -1,4 +1,4 @@
-﻿namespace ProgramTest
+﻿namespace ProgramsTest
 {
     using System;
     using System.Collections.Generic;
