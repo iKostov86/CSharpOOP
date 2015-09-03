@@ -63,7 +63,7 @@
                 sb.AppendLine(point.ToString());
             }
 
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
         #endregion
     }

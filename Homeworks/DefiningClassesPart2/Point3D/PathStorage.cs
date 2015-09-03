@@ -21,7 +21,11 @@
 
             foreach (string line in lines)
             {
-                decimal[] coordinates = line
+                int afterFirstBracket = 2;
+                int beforeLastBracket = line.Length - 3;
+                string coordinatesAsString = line.Substring(afterFirstBracket, beforeLastBracket);
+
+                decimal[] coordinates = coordinatesAsString
                     .Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => decimal.Parse(s))
                     .ToArray();
