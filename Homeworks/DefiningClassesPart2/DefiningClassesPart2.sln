@@ -9,19 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GenericClass", "GenericClas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProgramTests", "ProgramTests", "{09DE5784-7724-4012-95F5-2F18C4F691AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericClassesTests", "GenericClassTest\GenericClassesTests.csproj", "{4FD03D0C-3359-445C-9AAA-327AB1A147E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericClassTests", "GenericClassTest\GenericClassTests.csproj", "{4FD03D0C-3359-445C-9AAA-327AB1A147E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MatrixClass", "MatrixClass", "{041EF846-AD57-431B-9BAF-DB30501D2684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixClassesTests", "MatrixClassTest\MatrixClassesTests.csproj", "{1BF3D7A7-A4A1-4DC8-ABF2-720E1A9B04B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixClassTests", "MatrixClassTest\MatrixClassTests.csproj", "{1BF3D7A7-A4A1-4DC8-ABF2-720E1A9B04B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomAttributes", "CustomAttributes", "{547C1101-79BA-419E-B3AE-255E24E1C922}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributes", "VersionAttribute\CustomAttributes.csproj", "{3D4785A9-FD30-4A70-A5B3-39F59C799EB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributes", "CustomAttributes\CustomAttributes.csproj", "{3D4785A9-FD30-4A70-A5B3-39F59C799EB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributesTests", "AttributeClassTest\CustomAttributesTests.csproj", "{0BE65AD0-DA68-4147-B89E-97AAB6A6A1AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributeTests", "CustomAttributeTests\CustomAttributeTests.csproj", "{0BE65AD0-DA68-4147-B89E-97AAB6A6A1AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space3DTests", "Space3DTest\Space3DTests.csproj", "{36C9FF80-62D7-462E-B9D8-B39A92B8D7DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space3DTests", "Space3DTests\Space3DTests.csproj", "{36C9FF80-62D7-462E-B9D8-B39A92B8D7DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space3D", "Space3D\Space3D.csproj", "{F0B03F6D-D3EE-413C-AD2E-873230A4E8D2}"
 EndProject
