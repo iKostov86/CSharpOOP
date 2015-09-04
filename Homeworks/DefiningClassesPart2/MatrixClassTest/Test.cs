@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using MatrixClass;
 
-    public class MatrixClassTest
+    public class Test
     {
         internal static void Main()
         {

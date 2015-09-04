@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericClassTest", "Generic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MatrixClass", "MatrixClass", "{041EF846-AD57-431B-9BAF-DB30501D2684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{82437FD8-99EB-454A-8AA0-69A0BC66721A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixClass", "Matrix\MatrixClass.csproj", "{82437FD8-99EB-454A-8AA0-69A0BC66721A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixClassTest", "MatrixClassTest\MatrixClassTest.csproj", "{1BF3D7A7-A4A1-4DC8-ABF2-720E1A9B04B6}"
 EndProject
