@@ -46,6 +46,7 @@
 
                 return this.InternalArray[index];
             }
+
             set
             {
                 this.InternalArray[index] = value;
@@ -69,7 +70,7 @@
         {
             if ((this.Count - 1) < (this.Capacity / 2))
             {
-                AutoShrink();
+                this.AutoShrink();
             }
 
             for (int i = index; i < this.Count - 1; i++)
@@ -120,11 +121,10 @@
 
             for (int i = 1; i < this.Count; i++)
             {
-                //if (Comparer<T>.Default.Compare(this.InternalArray[i], min) < 0)
-                //{
-                //    min = this.InternalArray[i];
-                //}
-
+                // if (Comparer<T>.Default.Compare(this.InternalArray[i], min) < 0)
+                // {
+                //     min = this.InternalArray[i];
+                // }
                 if (this.InternalArray[i].CompareTo(min) < 0)
                 {
                     min = this.InternalArray[i];
@@ -145,11 +145,10 @@
 
             for (int i = 1; i < this.Count; i++)
             {
-                //if (Comparer<T>.Default.Compare(this.InternalArray[i], max) > 0)
-                //{
-                //    max = this.InternalArray[i];
-                //}
-
+                // if (Comparer<T>.Default.Compare(this.InternalArray[i], max) > 0)
+                // {
+                //     max = this.InternalArray[i];
+                // }
                 if (this.InternalArray[i].CompareTo(max) > 0)
                 {
                     max = this.InternalArray[i];
@@ -168,14 +167,14 @@
         {
             this.Capacity *= 2;
 
-            ResizeList();
+            this.ResizeList();
         }
 
         private void AutoShrink()
         {
             this.Capacity /= 2;
 
-            ResizeList();
+            this.ResizeList();
         }
 
         private void ResizeList()

@@ -29,6 +29,7 @@
             {
                 return this.points;
             }
+
             private set
             {
                 this.points = value;

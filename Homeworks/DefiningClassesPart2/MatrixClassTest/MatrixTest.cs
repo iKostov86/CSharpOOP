@@ -9,17 +9,17 @@
 
     public class MatrixTest
     {
-        internal static void Main()
+        public static void Main()
         {
             var matrixA = new Matrix<int>(3, 3);
             var matrixB = new Matrix<int>(3, 6);
             var matrixC = new Matrix<int>(matrixA.Row, matrixA.Column);
             var matrixD = new Matrix<int>(1, 1);
 
-            fillMatrix(matrixA);
-            fillMatrix(matrixB);
-            fillMatrix(matrixC);
-            fillMatrix(matrixD);
+            FillMatrix(matrixA);
+            FillMatrix(matrixB);
+            FillMatrix(matrixC);
+            FillMatrix(matrixD);
 
             Console.WriteLine(matrixA);
             Console.WriteLine(matrixB);
@@ -42,7 +42,7 @@
             Console.WriteLine(matrixD ? true : false);
         }
 
-        public static void fillMatrix(Matrix<int> matrix)
+        public static void FillMatrix(Matrix<int> matrix)
         {
             var value = 0;
 

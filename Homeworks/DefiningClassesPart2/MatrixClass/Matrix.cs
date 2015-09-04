@@ -38,6 +38,7 @@
             {
                 return this.row;
             }
+
             private set
             {
                 if (value < 1)
@@ -55,6 +56,7 @@
             {
                 return this.column;
             }
+
             private set
             {
                 if (value < 1)
@@ -74,14 +76,14 @@
         {
             get
             {
-                ValidateIndexesRange(row, column);
+                this.ValidateIndexesRange(row, column);
 
                 return this.Array[row, column];
             }
 
             set
             {
-                ValidateIndexesRange(row, column);
+                this.ValidateIndexesRange(row, column);
 
                 this.Array[row, column] = value;
             }
@@ -89,14 +91,6 @@
         #endregion
 
         #region Methods
-        private static void ValidateIfNumeric(bool isNumeric)
-        {
-            if (!isNumeric)
-            {
-                throw new ArgumentException("The type must be a number!");
-            }
-        }
-
         public static Matrix<T> operator +(Matrix<T> matrixA, Matrix<T> matrixB)
         {
             ValidateIfNumeric(matrixA.isNumeric);
@@ -246,16 +240,24 @@
             return true;
         }
 
-        private void ValidateIndexesRange(int row, int column)
+        public override string ToString()
         {
-            if (row < 0 || row >= this.Row ||
-                column < 0 || column >= this.Column)
+            StringBuilder sb = new StringBuilder();
+
+            for (int r = 0; r < this.Row; r++)
             {
-                throw new ArgumentOutOfRangeException();
+                for (int c = 0; c < this.Column; c++)
+                {
+                    sb.AppendFormat("{0, 3} ", this.Array[r, c]);
+                }
+
+                sb.AppendLine(Environment.NewLine);
             }
+
+            return sb.ToString();
         }
 
-        private bool IsNumeric()
+        private static bool IsNumeric()
         {
             var type = typeof(T);
             var set = new HashSet<Type>()
@@ -276,21 +278,21 @@
             return false;
         }
 
-        public override string ToString()
+        private static void ValidateIfNumeric(bool isNumeric)
         {
-            StringBuilder sb = new StringBuilder();
-
-            for (int r = 0; r < this.Row; r++)
+            if (!isNumeric)
             {
-                for (int c = 0; c < this.Column; c++)
-                {
-                    sb.AppendFormat("{0, 3} ", this.Array[r, c]);
-                }
-
-                sb.AppendLine(Environment.NewLine);
+                throw new ArgumentException("The type must be a number!");
             }
+        }
 
-            return sb.ToString();
+        private void ValidateIndexesRange(int row, int column)
+        {
+            if (row < 0 || row >= this.Row ||
+                column < 0 || column >= this.Column)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
         #endregion
     }
