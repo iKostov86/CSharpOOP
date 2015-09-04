@@ -39,17 +39,31 @@
         {
             get
             {
+                ValidateIfNegative(row);
+                ValidateIfNegative(column);
+
                 return this.Array[row, column];
             }
 
             set
             {
+                ValidateIfNegative(row);
+                ValidateIfNegative(column);
+
                 this.Array[row, column] = value;
             }
         }
         #endregion
 
         #region Methods
+        private static void ValidateIfNegative(int param)
+        {
+            if (param < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public static Matrix<T> operator +(Matrix<T> matrixA, Matrix<T> matrixB)
         {
             if (matrixA.Row != matrixB.Row || matrixA.Column != matrixB.Column)

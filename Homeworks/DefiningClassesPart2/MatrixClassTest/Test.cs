@@ -39,6 +39,8 @@
 
             matrixD[0, 0] = 2;
 
+            Console.WriteLine(matrixA[-1, 4]);
+
             Console.WriteLine(matrixA);
             ////Console.WriteLine(matrixB);
             Console.WriteLine(matrixC);
