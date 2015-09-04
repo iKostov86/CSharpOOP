@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Text;
@@ -10,6 +11,9 @@
     public class Matrix<T> where T : struct
     {
         #region Fields
+        private readonly bool isNumeric;
+        private int row;
+        private int column;
         #endregion
 
         #region Constructors
@@ -23,13 +27,44 @@
             this.Row = row;
             this.Column = column;
             this.Array = new T[this.Row, this.Column];
+            this.isNumeric = IsNumeric();
         }
         #endregion
 
         #region Properties
-        public int Row { get; set; }
+        public int Row
+        {
+            get
+            {
+                return this.row;
+            }
+            private set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("Rows must be more than zero (0)!");
+                }
 
-        public int Column { get; set; }
+                this.row = value;
+            }
+        }
+
+        public int Column
+        {
+            get
+            {
+                return this.column;
+            }
+            private set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("Columns must be more than zero (0)!");
+                }
+
+                this.column = value;
+            }
+        }
 
         private T[,] Array { get; set; }
         #endregion
@@ -39,16 +74,14 @@
         {
             get
             {
-                ValidateIfNegative(row);
-                ValidateIfNegative(column);
+                ValidateIndexesRange(row, column);
 
                 return this.Array[row, column];
             }
 
             set
             {
-                ValidateIfNegative(row);
-                ValidateIfNegative(column);
+                ValidateIndexesRange(row, column);
 
                 this.Array[row, column] = value;
             }
@@ -56,30 +89,32 @@
         #endregion
 
         #region Methods
-        private static void ValidateIfNegative(int param)
+        private static void ValidateIfNumeric(bool isNumeric)
         {
-            if (param < 0)
+            if (!isNumeric)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentException("The type must be a number!");
             }
         }
 
         public static Matrix<T> operator +(Matrix<T> matrixA, Matrix<T> matrixB)
         {
+            ValidateIfNumeric(matrixA.isNumeric);
+
             if (matrixA.Row != matrixB.Row || matrixA.Column != matrixB.Column)
             {
                 throw new ArgumentException("The matrices not the same.");
             }
 
             // Declare the parameters
-            var paramA = Expression.Parameter(typeof(T), "matrixA");
-            var paramB = Expression.Parameter(typeof(T), "matrixB");
+            ParameterExpression x = Expression.Parameter(typeof(T), "x");
+            ParameterExpression y = Expression.Parameter(typeof(T), "y");
 
             // Add the parameters together
-            BinaryExpression body = Expression.Add(paramA, paramB);
+            BinaryExpression body = Expression.Add(x, y);
 
             // Compile it
-            Func<T, T, T> add = Expression.Lambda<Func<T, T, T>>(body, paramA, paramB).Compile();
+            Func<T, T, T> add = Expression.Lambda<Func<T, T, T>>(body, x, y).Compile();
 
             int row = matrixA.Row;
             int column = matrixA.Column;
@@ -99,20 +134,22 @@
 
         public static Matrix<T> operator -(Matrix<T> matrixA, Matrix<T> matrixB)
         {
+            ValidateIfNumeric(matrixA.isNumeric);
+
             if (matrixA.Row != matrixB.Row || matrixA.Column != matrixB.Column)
             {
                 throw new ArgumentException("The matrices not the same.");
             }
 
             // Declare the parameters
-            var paramA = Expression.Parameter(typeof(T), "matrixA");
-            var paramB = Expression.Parameter(typeof(T), "matrixB");
+            ParameterExpression x = Expression.Parameter(typeof(T), "x");
+            ParameterExpression y = Expression.Parameter(typeof(T), "y");
 
             // Substract the parameters
-            BinaryExpression body = Expression.Subtract(paramA, paramB);
+            BinaryExpression body = Expression.Subtract(x, y);
 
             // Compile it
-            Func<T, T, T> substract = Expression.Lambda<Func<T, T, T>>(body, paramA, paramB).Compile();
+            Func<T, T, T> substract = Expression.Lambda<Func<T, T, T>>(body, x, y).Compile();
 
             int row = matrixA.Row;
             int column = matrixA.Column;
@@ -132,24 +169,26 @@
 
         public static Matrix<T> operator *(Matrix<T> matrixA, Matrix<T> matrixB)
         {
+            ValidateIfNumeric(matrixA.isNumeric);
+
             if (matrixA.Column != matrixB.Row)
             {
                 throw new ArgumentException("The matrices format isn't valid.");
             }
 
             // Declare the parameters
-            var paramA = Expression.Parameter(typeof(T), "matrixA");
-            var paramB = Expression.Parameter(typeof(T), "matrixB");
+            ParameterExpression x = Expression.Parameter(typeof(T), "x");
+            ParameterExpression y = Expression.Parameter(typeof(T), "y");
 
             // Add the parameters
-            BinaryExpression addBody = Expression.Add(paramA, paramB);
+            BinaryExpression addBody = Expression.Add(x, y);
 
             // Multiply the parameters
-            BinaryExpression multiplyBody = Expression.Multiply(paramA, paramB);
+            BinaryExpression multiplyBody = Expression.Multiply(x, y);
 
             // Compile them
-            Func<T, T, T> add = Expression.Lambda<Func<T, T, T>>(addBody, paramA, paramB).Compile();
-            Func<T, T, T> multiply = Expression.Lambda<Func<T, T, T>>(multiplyBody, paramA, paramB).Compile();
+            Func<T, T, T> add = Expression.Lambda<Func<T, T, T>>(addBody, x, y).Compile();
+            Func<T, T, T> multiply = Expression.Lambda<Func<T, T, T>>(multiplyBody, x, y).Compile();
 
             int row = matrixA.Row;
             int column = matrixB.Column;
@@ -210,6 +249,36 @@
             }
 
             return isTrue;
+        }
+
+        private void ValidateIndexesRange(int row, int column)
+        {
+            if (row < 0 || row >= this.Row ||
+                column < 0 || column >= this.Column)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private bool IsNumeric()
+        {
+            var type = typeof(T);
+            var set = new HashSet<Type>()
+            {
+                typeof(sbyte), typeof(byte), typeof(short), typeof(ushort),
+                typeof(int), typeof(uint), typeof(sbyte), typeof(long),
+                typeof(ulong), typeof(float), typeof(double), typeof(decimal),
+            };
+
+            foreach (var item in set)
+            {
+                if (type == item)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public override string ToString()

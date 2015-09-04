@@ -11,57 +11,46 @@
     {
         internal static void Main()
         {
-            Matrix<int> matrixA = new Matrix<int>(3, 3);
-            Matrix<int> matrixB = new Matrix<int>(3, 6);
-            Matrix<int> matrixC = new Matrix<int>(matrixA.Row, matrixA.Column);
-            Matrix<int> matrixD = new Matrix<int>(1, 1);
+            var matrixA = new Matrix<int>(3, 3);
+            var matrixB = new Matrix<int>(3, 6);
+            var matrixC = new Matrix<int>(matrixA.Row, matrixA.Column);
+            var matrixD = new Matrix<int>(1, 1);
 
-            matrixA[0, 0] = 1;
-            matrixA[0, 1] = 2;
-            matrixA[0, 2] = 3;
-            matrixA[1, 0] = 4;
-            matrixA[1, 1] = 5;
-            matrixA[1, 2] = 6;
-
-            matrixB[0, 0] = 7;
-            matrixB[0, 1] = 8;
-            matrixB[1, 0] = 9;
-            matrixB[1, 1] = 10;
-            matrixB[2, 0] = 11;
-            matrixB[2, 1] = 12;
-
-            matrixC[0, 0] = 3;
-            matrixC[0, 1] = 2;
-            matrixC[0, 2] = 3;
-            matrixC[1, 0] = 4;
-            matrixC[1, 1] = 5;
-            matrixC[1, 2] = 6;
-
-            matrixD[0, 0] = 2;
-
-            Console.WriteLine(matrixA[-1, 4]);
+            fillMatrix(matrixA);
+            fillMatrix(matrixB);
+            fillMatrix(matrixC);
+            fillMatrix(matrixD);
 
             Console.WriteLine(matrixA);
-            ////Console.WriteLine(matrixB);
+            Console.WriteLine(matrixB);
             Console.WriteLine(matrixC);
-            ////Console.WriteLine(matrixD);
+            Console.WriteLine(matrixD);
 
-            var sum = matrixA + matrixC;
-            Console.WriteLine(sum);
+            var sumAC = matrixA + matrixC;
 
-            var sub = matrixA - matrixC;
-            Console.WriteLine(sub);
+            Console.WriteLine(sumAC);
 
-            var product = matrixA * matrixB;
-            Console.WriteLine(product);
+            var subAC = matrixA - matrixC;
 
-            if (matrixA)
+            Console.WriteLine(subAC);
+
+            var productAB = matrixA * matrixB;
+
+            Console.WriteLine(productAB);
+
+            Console.WriteLine(matrixA ? true : false);
+        }
+
+        public static void fillMatrix(Matrix<int> matrix)
+        {
+            var value = 0;
+
+            for (var i = 0; i < matrix.Row; i++)
             {
-                Console.WriteLine(true);
-            }
-            else
-            {
-                Console.WriteLine(false); ;
+                for (var j = 0; j < matrix.Column; j++)
+                {
+                    matrix[i, j] = value++;
+                }
             }
         }
     }
