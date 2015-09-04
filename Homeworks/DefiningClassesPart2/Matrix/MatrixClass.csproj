@@ -7,8 +7,8 @@
     <ProjectGuid>{82437FD8-99EB-454A-8AA0-69A0BC66721A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Matrix</RootNamespace>
-    <AssemblyName>Matrix</AssemblyName>
+    <RootNamespace>MatrixClass</RootNamespace>
+    <AssemblyName>MatrixClass</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
