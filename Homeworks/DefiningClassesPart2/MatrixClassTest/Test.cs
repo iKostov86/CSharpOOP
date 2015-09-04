@@ -39,6 +39,7 @@
             Console.WriteLine(productAB);
 
             Console.WriteLine(matrixA ? true : false);
+            Console.WriteLine(matrixD ? true : false);
         }
 
         public static void fillMatrix(Matrix<int> matrix)

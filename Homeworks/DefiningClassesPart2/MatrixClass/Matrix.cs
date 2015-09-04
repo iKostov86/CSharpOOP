@@ -209,46 +209,41 @@
             return product;
         }
 
-        public static bool operator true(Matrix<T> matrixA)
+        public static bool operator true(Matrix<T> matrix)
         {
-            bool isTrue = false;
-
-            for (int i = 0; i < matrixA.Row; i++)
+            for (int i = 0; i < matrix.Row; i++)
             {
-                for (int j = 0; j < matrixA.Column; j++)
+                for (int j = 0; j < matrix.Column; j++)
                 {
-                    if (matrixA[i, j].Equals(default(T)))
+                    if (!matrix[i, j].Equals(default(T)))
                     {
-                        isTrue = true;
-                        break;
+                        return true;
                     }
                 }
             }
 
-            return isTrue;
+            return false;
         }
 
-        public static bool operator false(Matrix<T> matrixA)
+        public static bool operator false(Matrix<T> matrix)
         {
-            bool isTrue = true;
+            return !matrix;
+        }
 
-            for (int i = 0; i < matrixA.Row; i++)
+        public static bool operator !(Matrix<T> matrix)
+        {
+            for (int i = 0; i < matrix.Row; i++)
             {
-                for (int j = 0; j < matrixA.Column; j++)
+                for (int j = 0; j < matrix.Column; j++)
                 {
-                    if (matrixA[i, j].Equals(default(T)))
+                    if (!matrix[i, j].Equals(default(T)))
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        isTrue = false;
-                        break;
+                        return false;
                     }
                 }
             }
 
-            return isTrue;
+            return true;
         }
 
         private void ValidateIndexesRange(int row, int column)
@@ -292,8 +287,7 @@
                     sb.AppendFormat("{0, 3} ", this.Array[r, c]);
                 }
 
-                sb.AppendLine();
-                sb.AppendLine();
+                sb.AppendLine(Environment.NewLine);
             }
 
             return sb.ToString();
