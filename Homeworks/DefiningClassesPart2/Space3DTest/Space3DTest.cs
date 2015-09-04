@@ -1,4 +1,4 @@
-﻿namespace ProgramsTest
+﻿namespace ProgramsTests
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Space3D;
 
-    public class Test
+    public class Space3DTest
     {
         internal static void Main()
         {

@@ -1,14 +1,14 @@
-﻿namespace ProgramsTest
+﻿namespace ProgramsTests
 {
     using System;
-    using AttributeClass;
+    using CustomAttributes;
 
     [Version(01, 01)]
-    public class AttributeClassTest
+    public class VersionAttributeTest
     {
         internal static void Main()
         {
-            Type type = typeof(AttributeClassTest);
+            Type type = typeof(VersionAttributeTest);
 
             var allAttributes = type.GetCustomAttributes(false);
 

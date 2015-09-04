@@ -1,4 +1,4 @@
-﻿namespace AttributeClass
+﻿namespace CustomAttributes
 {
     using System;
 

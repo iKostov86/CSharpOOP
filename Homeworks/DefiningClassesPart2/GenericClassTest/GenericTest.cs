@@ -1,9 +1,9 @@
-﻿namespace ProgramsTest
+﻿namespace ProgramsTests
 {
     using System;
     using GenericClass;
 
-    public class Test
+    public class GenericTest
     {
         internal static void Main()
         {

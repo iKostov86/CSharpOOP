@@ -1,4 +1,4 @@
-﻿namespace ProgramsTest
+﻿namespace ProgramsTests
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using MatrixClass;
 
-    public class Test
+    public class MatrixTest
     {
         internal static void Main()
         {
