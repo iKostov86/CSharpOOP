@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Space3D;
 
-    public class Space3DTest
+    public class Test
     {
         internal static void Main()
         {

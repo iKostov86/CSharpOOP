@@ -9,7 +9,7 @@
     public class GenericList<T> where T : IComparable
     {
         #region Fields
-        private const uint InitialSize = 8u;
+        private const int InitialSize = 8;
         #endregion
 
         #region Constructors
@@ -18,38 +18,37 @@
         {
         }
 
-        public GenericList(uint initialSize)
+        public GenericList(int initialSize)
         {
-            this.Array = new T[initialSize];
-            this.Count = 0u;
+            this.InternalArray = new T[initialSize];
             this.Capacity = initialSize;
+            this.Count = 0;
         }
         #endregion
 
         #region Properties
-        public uint Count { get; private set; }
+        public int Count { get; private set; }
 
-        public uint Capacity { get; private set; }
+        public int Capacity { get; private set; }
 
-        private T[] Array { get; set; }
+        private T[] InternalArray { get; set; }
         #endregion
 
         #region Indexers
-        public T this[uint index]
+        public T this[int index]
         {
             get
             {
-                if (index >= this.Count)
+                if (index < 0 || index >= this.Count)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                return this.Array[index];
+                return this.InternalArray[index];
             }
-
-            private set
+            set
             {
-                this.Array[index] = value;
+                this.InternalArray[index] = value;
             }
         }
         #endregion
@@ -62,66 +61,73 @@
                 this.AutoGrow();
             }
 
-            this.Array[this.Count] = element;
+            this.InternalArray[this.Count] = element;
             this.Count++;
         }
 
-        public void RemoveElement(uint index)
+        public void RemoveElement(int index)
         {
-            for (uint i = index; i < this.Count - 1; i++)
+            if ((this.Count - 1) < (this.Capacity / 2))
             {
-                this.Array[i] = this.Array[i + 1];
+                AutoShrink();
+            }
+
+            for (int i = index; i < this.Count - 1; i++)
+            {
+                this.InternalArray[i] = this.InternalArray[i + 1];
             }
 
             this.Count--;
-            this.Array[this.Count] = default(T);
+            this.InternalArray[this.Count] = default(T);
         }
 
-        public void InsertElement(T element, uint index)
+        public void InsertElement(T element, int index)
         {
             if (this.Count == this.Capacity)
             {
                 this.AutoGrow();
             }
 
-            for (uint i = this.Count; i > index; i--)
+            for (int i = this.Count; i > index; i--)
             {
-                this.Array[i] = this.Array[i - 1];
+                this.InternalArray[i] = this.InternalArray[i - 1];
             }
 
-            this.Array[index] = element;
+            this.InternalArray[index] = element;
             this.Count++;
         }
 
         public T PeekElement()
         {
-            return this.Array[this.Count - 1];
+            return this.InternalArray[this.Count - 1];
         }
 
         public void ClearList()
         {
-            for (int i = 0; i < this.Count; i++)
-            {
-                this.Array[i] = default(T);
-            }
-
-            this.Count = 0u;
+            this.InternalArray = new T[InitialSize];
+            this.Capacity = InitialSize;
+            this.Count = 0;
         }
 
         public T Min()
         {
-            if (this.Count == 0u)
+            if (this.Count == 0)
             {
                 throw new ArgumentNullException("There are not elements in the generic list.");
             }
 
-            T min = this.Array[0u];
+            T min = this.InternalArray[0];
 
-            for (uint i = 1u; i < this.Count; i++)
+            for (int i = 1; i < this.Count; i++)
             {
-                if (this.Array[i].CompareTo(min) < 0)
+                //if (Comparer<T>.Default.Compare(this.InternalArray[i], min) < 0)
+                //{
+                //    min = this.InternalArray[i];
+                //}
+
+                if (this.InternalArray[i].CompareTo(min) < 0)
                 {
-                    min = this.Array[i];
+                    min = this.InternalArray[i];
                 }
             }
 
@@ -130,19 +136,23 @@
 
         public T Max()
         {
-            if (this.Count == 0u)
+            if (this.Count == 0)
             {
                 throw new ArgumentNullException("There are not elements in the generic list.");
             }
 
-            T max = this.Array[0u];
+            T max = this.InternalArray[0];
 
-            for (uint i = 1u; i < this.Count; i++)
+            for (int i = 1; i < this.Count; i++)
             {
-                ////if(Comparer<T>.Default.Compare(this.Array[i], max) < 0)
-                if (this.Array[i].CompareTo(max) > 0)
+                //if (Comparer<T>.Default.Compare(this.InternalArray[i], max) > 0)
+                //{
+                //    max = this.InternalArray[i];
+                //}
+
+                if (this.InternalArray[i].CompareTo(max) > 0)
                 {
-                    max = this.Array[i];
+                    max = this.InternalArray[i];
                 }
             }
 
@@ -151,20 +161,35 @@
 
         public override string ToString()
         {
-            return string.Join(" ", this.Array.TakeWhile((x, y) => y < this.Count));
+            return string.Join(" ", this.InternalArray.TakeWhile((x, y) => y < this.Count));
         }
 
         private void AutoGrow()
         {
             this.Capacity *= 2;
+
+            ResizeList();
+        }
+
+        private void AutoShrink()
+        {
+            this.Capacity /= 2;
+
+            ResizeList();
+        }
+
+        private void ResizeList()
+        {
             T[] newArray = new T[this.Capacity];
 
-            for (uint i = 0; i < this.Array.Length; i++)
+            int length = this.Count;
+
+            for (int i = 0; i < length; i++)
             {
-                newArray[i] = this.Array[i];
+                newArray[i] = this.InternalArray[i];
             }
 
-            this.Array = newArray;
+            this.InternalArray = newArray;
         }
         #endregion
     }
